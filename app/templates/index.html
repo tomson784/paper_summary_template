@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-  <title>Bootstrap Example</title>
+  <title>論文概要まとめ</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -12,16 +12,18 @@
 <body>
 
 <div class="jumbotron text-center">
-  <h1>My First Bootstrap Page</h1>
-  <p>Resize this responsive page to see the effect!</p> 
+  <h1>論文概要まとめ</h1>
+  <p>論文の読んだ内容から要点をまとめ，集計するためのソフト</p> 
 </div>
   
 <div class="container">
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-4 border">
       <h3>Column 1</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      {% for article in articles: %}
+        <li><a href="#">{{ article }}</a></li>
+        <!-- <li>{{ article }}</li> -->
+      {% endfor %}
     </div>
     <div class="col-sm-4">
       <h3>Column 2</h3>
