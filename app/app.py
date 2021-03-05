@@ -6,12 +6,12 @@ import os
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 
-articles_dir = "./resources"
+articles_dir = "./resources/*"
 
 @app.route('/')
 def hello():
-    # articles =glob.glob(articles_dir)
-    articles = os.listdir(path=articles_dir)
+    articles =glob.glob(articles_dir)
+    # articles = os.listdir(path=articles_dir)
     print(articles)
     return render_template("index.html", articles=articles)
 
