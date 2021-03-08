@@ -5,6 +5,8 @@ date:   YYYY-MM-DD
 categories: CV NLP Others
 ---
 
+## Abstruct
+
 ## 1. どんなもの？
 
 ## 2. 先行研究と比べてどこがすごいの？

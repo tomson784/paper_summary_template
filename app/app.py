@@ -10,10 +10,10 @@ articles_dir = "./resources/*"
 
 @app.route('/')
 def hello():
-    articles =glob.glob(articles_dir)
+    categories = glob.glob(articles_dir)
     # articles = os.listdir(path=articles_dir)
-    print(articles)
-    return render_template("index.html", articles=articles)
+    print(categories)
+    return render_template("index.html", categories=categories)
 
 @app.route("/data")
 def data():
