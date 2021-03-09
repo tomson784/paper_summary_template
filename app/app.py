@@ -8,11 +8,14 @@ app.config['JSON_AS_ASCII'] = False
 
 articles_dir = "./resources/"
 
+# class category_articles
+
 @app.route('/')
 def hello():
     # categories = glob.glob(articles_dir + "*")
     categories = [os.path.basename(i) for i in glob.glob(articles_dir + "*")]
-    articles = glob.glob(articles_dir + categories[0] + "/*")
+    # articles = glob.glob(articles_dir + categories[0] + "/*")
+    articles = glob.glob(articles_dir + "/*/*")
     print(categories)
     print(articles)
     return render_template("index.html", categories=categories, articles=articles)
