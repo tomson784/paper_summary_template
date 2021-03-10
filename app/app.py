@@ -8,7 +8,18 @@ app.config['JSON_AS_ASCII'] = False
 
 articles_dir = "./resources/"
 
-# class category_articles
+class Category():
+    def __init__(self, category_name):
+        self.category_name = category_name
+        self.articles = []
+    
+    def lists(self, articles):
+        for art in articles:
+            if (os.path.basename(os.path.dirname(art)) == self.category_name):
+                self.articles.append(art)
+    
+    def __repr__(self):
+        return 'Category name is <{}>'.format(self.category_name)
 
 @app.route('/')
 def hello():
