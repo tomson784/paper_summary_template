@@ -23,13 +23,15 @@ class Category():
 
 @app.route('/')
 def hello():
-    # categories = glob.glob(articles_dir + "*")
-    categories = [os.path.basename(i) for i in glob.glob(articles_dir + "*")]
+    category_names = [os.path.basename(i) for i in glob.glob(articles_dir + "*")]
+    categories_class = [Category(category_name) for category_name in category_names]
     # articles = glob.glob(articles_dir + categories[0] + "/*")
     articles = glob.glob(articles_dir + "/*/*")
-    print(categories)
+    for i in range(len(category_names)):
+        categories_class[i].lists(articles)
+    print(categories_class)
     print(articles)
-    return render_template("index.html", categories=categories, articles=articles)
+    return render_template("index.html", categories=categories_class)
 
 @app.route("/data")
 def data():

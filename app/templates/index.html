@@ -20,12 +20,10 @@
   <div class="row">
     {% for category in categories: %}
     <div class="col-sm border">
-      <h3>{{ category }}</h3>
-      {% for article in articles: %}
-        <li><a href="#">{{ article }}</a></li>
+      <h3>{{ category.category_name }}</h3>
+      {% for art in category.articles: %}
+          <li><a href="#">{{ art }}</a></li>
       {% endfor %}
-      <li>sample 1</li>
-      <li>sample 2</li>
     </div>
     {% endfor %}
   </div>
