@@ -47,12 +47,13 @@ def show_article(category, article):
         text = f.read()
     html = markdown.markdown(text)
     print(html)
+    # return render_template("article.html", contents=html)
     return html
 
-@app.route("/data")
-def data():
-    r = {"name": "a", "article": "b"}
-    return jsonify(r)
+# @app.route("/data")
+# def data():
+#     r = {"name": "a", "article": "b"}
+#     return jsonify(r)
 
 if __name__ == "__main__":
     app.run()
