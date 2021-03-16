@@ -21,12 +21,12 @@
     {% for category in categories: %}
     <div class="col-sm border">
       <h3>{{ category.category_name }}</h3>
-      {% for art in category.articles: %}
-        <li><a href="#">{{ art }}</a></li>
-      {% endfor %}
-      <!-- {% for art in category.articles: %}
-        <li><a href="{{ url_for('show_article', category=category.category_name, article=art) }}">{{ art }}</a></li>
+      <!-- {% for article in category.articles: %}
+        <li><a href="#">{{ article }}</a></li>
       {% endfor %} -->
+      {% for article in category.articles: %}
+        <li><a href="{{ url_for('show_article', category=category.category_name, article=article) }}">{{ article }}</a></li>
+      {% endfor %}
     </div>
     {% endfor %}
   </div>

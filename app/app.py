@@ -2,6 +2,7 @@ from flask import Flask, request, render_template,\
                   redirect, url_for, jsonify
 import glob
 import os
+import markdown
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -41,7 +42,12 @@ def home():
 
 @app.route('/<category>/<article>')
 def show_article(category, article):
-    return str(category) + str(article) 
+    path = articles_dir + category + "/" + article
+    with open(path, "r", encoding="utf-8") as f:
+        text = f.read()
+    html = markdown.markdown(text)
+    print(html)
+    return html
 
 @app.route("/data")
 def data():
