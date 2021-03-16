@@ -12,17 +12,21 @@ class Category():
     def __init__(self, category_name):
         self.category_name = category_name
         self.articles = []
+        self.articles_path = []
     
     def lists(self, articles):
-        for art in articles:
-            if (os.path.basename(os.path.dirname(art)) == self.category_name):
-                self.articles.append(art)
+        for article_path in articles:
+            article_category = os.path.basename(os.path.dirname(article_path))
+            article_name = os.path.basename(article_path)
+            if (article_category == self.category_name):
+                self.articles.append(article_name)
+                self.articles_path.append(article_path)
     
     def __repr__(self):
         return 'Category name is <{}>'.format(self.category_name)
 
 @app.route('/')
-def hello():
+def home():
     category_names = [os.path.basename(i) for i in glob.glob(articles_dir + "*")]
     categories_class = [Category(category_name) for category_name in category_names]
     # articles = glob.glob(articles_dir + categories[0] + "/*")
@@ -30,8 +34,14 @@ def hello():
     for i in range(len(category_names)):
         categories_class[i].lists(articles)
     print(categories_class)
+    print(categories_class[0].articles)
+    print(categories_class[0].articles_path)
     print(articles)
     return render_template("index.html", categories=categories_class)
+
+@app.route('/<category>/<article>')
+def show_article(category, article):
+    return str(category) + str(article) 
 
 @app.route("/data")
 def data():
