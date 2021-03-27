@@ -14,3 +14,6 @@ class Category():
             if (article_category == self.category_name):
                 self.articles.append(article_name)
                 self.articles_path.append(article_path)
+    
+    def __repr__(self):
+        return 'Category name is <{}>'.format(self.category_name)

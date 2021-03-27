@@ -15,3 +15,11 @@ python app.py
 ```
 python build.py
 ```
+
+## 依存ライブラリ
+
+```
+markdown
+flask
+flask_frozen
+```

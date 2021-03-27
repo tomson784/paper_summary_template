@@ -1,36 +1,21 @@
 from flask import Flask, request, render_template,\
                   redirect, url_for, jsonify
+import markdown
+
 import glob
 import os
-import markdown
+
+from utils.category import Category
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 
 articles_dir = "./resources/"
 
-class Category():
-    def __init__(self, category_name):
-        self.category_name = category_name
-        self.articles = []
-        self.articles_path = []
-    
-    def lists(self, articles):
-        for article_path in articles:
-            article_category = os.path.basename(os.path.dirname(article_path))
-            article_name = os.path.basename(article_path)
-            if (article_category == self.category_name):
-                self.articles.append(article_name)
-                self.articles_path.append(article_path)
-    
-    def __repr__(self):
-        return 'Category name is <{}>'.format(self.category_name)
-
 @app.route('/')
 def home():
     category_names = [os.path.basename(i) for i in glob.glob(articles_dir + "*")]
     categories_class = [Category(category_name) for category_name in category_names]
-    # articles = glob.glob(articles_dir + categories[0] + "/*")
     articles = glob.glob(articles_dir + "/*/*")
     for i in range(len(category_names)):
         categories_class[i].lists(articles)
