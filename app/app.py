@@ -1,11 +1,11 @@
 from flask import Flask, request, render_template,\
                   redirect, url_for, jsonify
-import markdown
 
 import glob
 import os
 
 from utils.category import Category
+from utils.md_parser import text2markdown
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -28,8 +28,8 @@ def home():
 @app.route('/<category>/<article>.html')
 def show_article(category, article):
     path = articles_dir + category + "/" + article + ".md"
-    with open(path, "r", encoding="utf-8") as f:
-        text = f.read()
+    html_, meta = text2markdown(path)
+    print(meta)
     html = """
     <!DOCTYPE html>
     <html lang="ja">
@@ -41,7 +41,8 @@ def show_article(category, article):
     </head>
     <body>
     """
-    html += markdown.markdown(text)
+    # html += markdown.markdown(text)
+    html += html_
     html += """
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
