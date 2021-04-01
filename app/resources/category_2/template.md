@@ -2,7 +2,7 @@
 layout: post
 title:  "論文タイトル"
 date:   YYYY-MM-DD
-categories: B D
+categories: point_cloud
 ---
 
 ## Abstruct

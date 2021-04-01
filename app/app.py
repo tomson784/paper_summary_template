@@ -5,7 +5,7 @@ import glob
 import os
 
 from utils.category import Category
-from utils.md_parser import markdown2html
+from utils.md_parser import markdown2html, set_categories
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -23,7 +23,10 @@ def home():
 
 @app.route('/categories')
 def home_cate():
-    categories_class = ["A", "B", "C", "D", "E"]
+    articles_paths = glob.glob(articles_dir + "/*/*")
+    print(articles_paths)
+    # categories_class = ["A", "B", "C", "D", "E"]
+    categories_class = set_categories(articles_paths)
     return render_template("index_categories.html", categories=categories_class)
 
 @app.route('/<category>/<article>.html')

@@ -2,7 +2,7 @@
 layout: post
 title:  "論文タイトル"
 date:   YYYY-MM-DD
-categories: A B
+categories: wheel_loader planning
 ---
 
 ## Abstruct

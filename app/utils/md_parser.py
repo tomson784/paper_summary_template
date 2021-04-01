@@ -18,5 +18,16 @@ def get_meta(article):
     md.convert(article)
     return md.Meta
 
+def set_categories(paths):
+    category_names = []
+    for path in paths:
+        article = read_article(path)
+        meta = get_meta(article)
+        print(meta["categories"])
+        categories = meta["categories"][0].split()
+        for category in categories:
+            category_names.append(category)
+    return set(category_names)
+
 def category_classification(meta):
     pass
