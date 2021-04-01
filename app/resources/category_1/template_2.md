@@ -2,7 +2,7 @@
 layout: post
 title:  "論文タイトル"
 date:   YYYY-MM-DD
-categories: NLP
+categories: B C
 ---
 
 ## Abstruct

@@ -5,7 +5,7 @@ import glob
 import os
 
 from utils.category import Category
-from utils.md_parser import text2markdown
+from utils.md_parser import markdown2html
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -19,17 +19,19 @@ def home():
     articles = glob.glob(articles_dir + "/*/*")
     for i in range(len(category_names)):
         categories_class[i].lists(articles)
-    # print(categories_class)
-    # print(categories_class[0].articles)
-    # print(categories_class[0].articles_path)
-    # print(articles)
     return render_template("index.html", categories=categories_class)
+
+@app.route('/categories')
+def home_cate():
+    categories_class = ["A", "B", "C", "D", "E"]
+    return render_template("index_categories.html", categories=categories_class)
 
 @app.route('/<category>/<article>.html')
 def show_article(category, article):
     path = articles_dir + category + "/" + article + ".md"
-    html_, meta = text2markdown(path)
+    html_, meta = markdown2html(path)
     print(meta)
+    print(meta["categories"])
     html = """
     <!DOCTYPE html>
     <html lang="ja">
@@ -41,7 +43,6 @@ def show_article(category, article):
     </head>
     <body>
     """
-    # html += markdown.markdown(text)
     html += html_
     html += """
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
