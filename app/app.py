@@ -18,15 +18,16 @@ def home():
     categories_class = [Category(category_name) for category_name in category_names]
     articles = glob.glob(articles_dir + "/*/*")
     for i in range(len(category_names)):
-        categories_class[i].lists(articles)
+        categories_class[i].dir_categorize(articles)
     return render_template("index.html", categories=categories_class)
 
 @app.route('/categories')
 def home_cate():
     articles_paths = glob.glob(articles_dir + "/*/*")
-    print(articles_paths)
-    # categories_class = ["A", "B", "C", "D", "E"]
-    categories_class = set_categories(articles_paths)
+    category_names = set_categories(articles_paths)
+    categories_class = [Category(category_name) for category_name in category_names]
+    for i in range(len(category_names)):
+        categories_class[i].meta_categorize(articles_paths)
     return render_template("index_categories.html", categories=categories_class)
 
 @app.route('/<category>/<article>.html')
@@ -54,14 +55,8 @@ def show_article(category, article):
     </body>
     </html>
     """
-    # print(html)
     # return render_template("article.html", contents=html)
     return html
-
-# @app.route("/data")
-# def data():
-#     r = {"name": "a", "article": "b"}
-#     return jsonify(r)
 
 if __name__ == "__main__":
     app.run()
