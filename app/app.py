@@ -10,7 +10,7 @@ from utils.md_parser import markdown2html, set_categories
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 
-articles_dir = "./resources/"
+articles_dir = "../_posts/"
 
 @app.route('/')
 def home():
