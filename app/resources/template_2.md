@@ -2,7 +2,8 @@
 layout: post
 title:  "論文タイトル"
 date:   YYYY-MM-DD
-categories: point_cloud
+categories: truck
+editor: son
 ---
 
 ## Abstruct

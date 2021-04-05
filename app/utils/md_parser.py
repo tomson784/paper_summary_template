@@ -23,7 +23,6 @@ def set_categories(paths):
     for path in paths:
         article = read_article(path)
         meta = get_meta(article)
-        print(meta["categories"])
         categories = meta["categories"][0].split()
         for category in categories:
             category_names.append(category)
